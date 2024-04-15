@@ -106,7 +106,7 @@ class PrivateRecipeAPITest(TestCase):
         """Test creating a recipe."""
         payload = {
             "title": "Sample recipe title.",
-            "time_minutes": "30",
+            "time_minutes": 30,
             "price": Decimal("5.99"),
             # "description": "Sample description of a recipe.",
             # "link": "http://example.com/recipe.pdf",
