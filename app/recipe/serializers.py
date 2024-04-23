@@ -75,7 +75,7 @@ class RecipeSerializer(serializers.ModelSerializer):
         return recipe
 
     def update(self, instance, validated_data):
-        """Update recipe."""
+        """Update existing recipe by ID."""
         tags = validated_data.pop("tags", None)
         ingredients = validated_data.pop("ingredients", None)
         if tags is not None:
