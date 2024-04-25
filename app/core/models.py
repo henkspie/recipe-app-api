@@ -67,10 +67,14 @@ class Recipe(models.Model):
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
     )
-    title = models.CharField(max_length=255)
-    description = models.TextField(blank=True)
-    time_minutes = models.IntegerField()
-    price = models.DecimalField(max_digits=5, decimal_places=2)
+    title = models.CharField(_("Title"), max_length=255)
+    description = models.TextField(_("Description"), blank=True)
+    serves = models.IntegerField(_("Serves"), default=2)
+    calories_serve = models.IntegerField(_("Calories/Serve"), null=True)
+    difficulty = models.PositiveSmallIntegerField(_("Difficulty"), default=0)
+    Rating = models.PositiveSmallIntegerField(_("Rating"), default=0)
+    time_minutes = models.IntegerField(_("Time in Minutes"), default=0)
+    price = models.DecimalField(_("Price"), max_digits=5, decimal_places=2)
     link = models.CharField(max_length=255, blank=True)
     tags = models.ManyToManyField("Tag")
     ingredients = models.ManyToManyField("Ingredient")
@@ -78,6 +82,10 @@ class Recipe(models.Model):
 
     def __str__(self):
         return self.title
+
+    class Meta:
+        verbose_name = _("Recipe")
+        verbose_name_plural = _("Recipes")
 
 
 class Tag(models.Model):
@@ -97,6 +105,8 @@ class Ingredient(models.Model):
     """Ingredient for recipes."""
 
     name = models.CharField(max_length=255)
+    amount = models.PositiveSmallIntegerField(_("Amount"), null=True)
+    units = models.CharField(_("Units"), max_length=15, null=True)
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,

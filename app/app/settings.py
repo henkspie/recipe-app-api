@@ -146,6 +146,7 @@ REST_FRAMEWORK = {
 
 SPECTACULAR_SETTINGS = {
     "TITLE": "Recipe test API.",
+    "DESCRIPTION": "Test API for creating recipes. More info: \n [Home site](localhost:8000/admin)",
     "VERSION": "0.1.0",
     "COMPONENT_SPLIT_REQUEST": True,
 }
